@@ -28,6 +28,7 @@ Partial Class MainForm
         Me.Clock = New System.Windows.Forms.Timer(Me.components)
         Me.ColorDialog = New System.Windows.Forms.ColorDialog()
         Me.chkStartup = New System.Windows.Forms.CheckBox()
+        Me.DateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.SuspendLayout()
         '
         'LabelTime
@@ -59,12 +60,20 @@ Partial Class MainForm
         Me.chkStartup.Text = "Startup"
         Me.chkStartup.UseVisualStyleBackColor = True
         '
+        'DateTimePicker
+        '
+        Me.DateTimePicker.Location = New System.Drawing.Point(81, 32)
+        Me.DateTimePicker.Name = "DateTimePicker"
+        Me.DateTimePicker.Size = New System.Drawing.Size(403, 21)
+        Me.DateTimePicker.TabIndex = 2
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(252, Byte), Integer), CType(CType(252, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(496, 56)
+        Me.Controls.Add(Me.DateTimePicker)
         Me.Controls.Add(Me.chkStartup)
         Me.Controls.Add(Me.LabelTime)
         Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
@@ -82,4 +91,5 @@ Partial Class MainForm
     Friend WithEvents Clock As Timer
     Friend WithEvents ColorDialog As ColorDialog
     Friend WithEvents chkStartup As CheckBox
+    Friend WithEvents DateTimePicker As DateTimePicker
 End Class

@@ -16,6 +16,9 @@ Public Class MainForm
         Me.TopMost = True
         Clock.Interval = 1000
         Clock.Start()
+        If My.Settings.DateTime <> Nothing Then
+            DateTimePicker.Value = DateTime.Parse(My.Settings.DateTime)
+        End If
     End Sub
     Private Sub CreateShortcutInStartUp(ByVal Description As String)
         Dim WshShell As WshShell = New WshShell()
@@ -35,9 +38,8 @@ Public Class MainForm
 
     Private Sub Clock_Tick(sender As Object, e As EventArgs) Handles Clock.Tick
         Dim sDate As DateTime = DateTime.Parse(Date.Now)
-        Dim eDate As DateTime = DateTime.Parse("2017-12-31 00:00:00")
+        Dim eDate As DateTime = DateTime.Parse(DateTimePicker.Value)
         Dim ts As TimeSpan = eDate.Subtract(sDate)
-
         LabelTime.Text = CStr(ts.Days) & " Days " & CStr(ts.Hours) & " Hours " & CStr(ts.Minutes) & " Minutes " & CStr(ts.Seconds) & " Seconds "
     End Sub
     Dim x, y As Integer
@@ -66,6 +68,11 @@ Public Class MainForm
         Else
             DeleteShortCutInStartUp()
         End If
+    End Sub
+
+    Private Sub DateTimePicker_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker.ValueChanged
+        My.Settings.DateTime = DateTimePicker.Value
+        My.Settings.Save()
     End Sub
 
     Private Sub LabelTime_MouseMove(sender As Object, e As MouseEventArgs) Handles LabelTime.MouseMove
