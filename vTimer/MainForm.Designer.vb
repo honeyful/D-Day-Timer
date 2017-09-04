@@ -27,12 +27,15 @@ Partial Class MainForm
         Me.LabelTime = New System.Windows.Forms.Label()
         Me.Clock = New System.Windows.Forms.Timer(Me.components)
         Me.ColorDialog = New System.Windows.Forms.ColorDialog()
-        Me.chkStartup = New System.Windows.Forms.CheckBox()
         Me.DateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.TrayIcon = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.ContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.TrayContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.StartupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ContextMenu.SuspendLayout()
+        Me.FormContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ShowDateTimePickerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TrayContextMenuStrip.SuspendLayout()
+        Me.FormContextMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'LabelTime
@@ -53,42 +56,50 @@ Partial Class MainForm
         '
         Me.ColorDialog.Color = System.Drawing.Color.White
         '
-        'chkStartup
-        '
-        Me.chkStartup.AutoSize = True
-        Me.chkStartup.ForeColor = System.Drawing.Color.Black
-        Me.chkStartup.Location = New System.Drawing.Point(12, 37)
-        Me.chkStartup.Name = "chkStartup"
-        Me.chkStartup.Size = New System.Drawing.Size(63, 16)
-        Me.chkStartup.TabIndex = 1
-        Me.chkStartup.Text = "Startup"
-        Me.chkStartup.UseVisualStyleBackColor = True
-        '
         'DateTimePicker
         '
         Me.DateTimePicker.Location = New System.Drawing.Point(81, 32)
         Me.DateTimePicker.Name = "DateTimePicker"
         Me.DateTimePicker.Size = New System.Drawing.Size(403, 21)
         Me.DateTimePicker.TabIndex = 2
+        Me.DateTimePicker.Visible = False
         '
         'TrayIcon
         '
-        Me.TrayIcon.ContextMenuStrip = Me.ContextMenu
+        Me.TrayIcon.ContextMenuStrip = Me.TrayContextMenuStrip
         Me.TrayIcon.Icon = CType(resources.GetObject("TrayIcon.Icon"), System.Drawing.Icon)
         Me.TrayIcon.Text = "vTimer"
         Me.TrayIcon.Visible = True
         '
-        'ContextMenu
+        'TrayContextMenuStrip
         '
-        Me.ContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
-        Me.ContextMenu.Name = "ContextMenu"
-        Me.ContextMenu.Size = New System.Drawing.Size(153, 48)
+        Me.TrayContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StartupToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.TrayContextMenuStrip.Name = "ContextMenu"
+        Me.TrayContextMenuStrip.Size = New System.Drawing.Size(114, 48)
+        '
+        'StartupToolStripMenuItem
+        '
+        Me.StartupToolStripMenuItem.Name = "StartupToolStripMenuItem"
+        Me.StartupToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
+        Me.StartupToolStripMenuItem.Text = "Startup"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(113, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
+        '
+        'FormContextMenuStrip
+        '
+        Me.FormContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowDateTimePickerToolStripMenuItem})
+        Me.FormContextMenuStrip.Name = "FormContextMenuStrip"
+        Me.FormContextMenuStrip.Size = New System.Drawing.Size(192, 48)
+        '
+        'ShowDateTimePickerToolStripMenuItem
+        '
+        Me.ShowDateTimePickerToolStripMenuItem.Name = "ShowDateTimePickerToolStripMenuItem"
+        Me.ShowDateTimePickerToolStripMenuItem.Size = New System.Drawing.Size(191, 22)
+        Me.ShowDateTimePickerToolStripMenuItem.Text = "Show DateTimePicker"
         '
         'MainForm
         '
@@ -96,8 +107,8 @@ Partial Class MainForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(252, Byte), Integer), CType(CType(252, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(496, 56)
+        Me.ContextMenuStrip = Me.FormContextMenuStrip
         Me.Controls.Add(Me.DateTimePicker)
-        Me.Controls.Add(Me.chkStartup)
         Me.Controls.Add(Me.LabelTime)
         Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -105,7 +116,8 @@ Partial Class MainForm
         Me.Name = "MainForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.TransparencyKey = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(252, Byte), Integer), CType(CType(252, Byte), Integer))
-        Me.ContextMenu.ResumeLayout(False)
+        Me.TrayContextMenuStrip.ResumeLayout(False)
+        Me.FormContextMenuStrip.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -114,9 +126,11 @@ Partial Class MainForm
     Friend WithEvents LabelTime As Label
     Friend WithEvents Clock As Timer
     Friend WithEvents ColorDialog As ColorDialog
-    Friend WithEvents chkStartup As CheckBox
     Friend WithEvents DateTimePicker As DateTimePicker
     Friend WithEvents TrayIcon As NotifyIcon
-    Friend WithEvents ContextMenu As ContextMenuStrip
+    Friend WithEvents TrayContextMenuStrip As ContextMenuStrip
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StartupToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FormContextMenuStrip As ContextMenuStrip
+    Friend WithEvents ShowDateTimePickerToolStripMenuItem As ToolStripMenuItem
 End Class

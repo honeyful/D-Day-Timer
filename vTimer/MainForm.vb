@@ -6,9 +6,9 @@ Public Class MainForm
         InitializeComponent()
         Me.ShowInTaskbar = False
         If IO.File.Exists(IO.Path.Combine(_shortcutPath, Application.ProductName) & ".lnk") Then
-            chkStartup.Checked = True
+            StartupToolStripMenuItem.Checked = True
         Else
-            chkStartup.Checked = False
+            StartupToolStripMenuItem.Checked = False
         End If
 
     End Sub
@@ -61,15 +61,6 @@ Public Class MainForm
         y = Control.MousePosition.Y - Me.Location.Y
     End Sub
 
-    Private Sub chkStartup_CheckedChanged(sender As Object, e As EventArgs) Handles chkStartup.CheckedChanged
-        If chkStartup.Checked Then
-            CreateShortcutInStartUp(String.Empty)
-
-        Else
-            DeleteShortCutInStartUp()
-        End If
-    End Sub
-
     Private Sub DateTimePicker_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker.ValueChanged
         My.Settings.DateTime = DateTimePicker.Value
         My.Settings.Save()
@@ -82,6 +73,28 @@ Public Class MainForm
 
         Environment.Exit(0)
     End Sub
+
+    Private Sub StartupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StartupToolStripMenuItem.Click
+        If StartupToolStripMenuItem.Checked Then
+            DeleteShortCutInStartUp()
+            StartupToolStripMenuItem.Checked = False
+        Else
+            CreateShortcutInStartUp(String.Empty)
+            StartupToolStripMenuItem.Checked = True
+        End If
+    End Sub
+
+    Private Sub ShowDateTimePickerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowDateTimePickerToolStripMenuItem.Click
+        If DateTimePicker.Visible = True Then
+            ShowDateTimePickerToolStripMenuItem.Text = "Hide DateTimePicker"
+            DateTimePicker.Visible = False
+        Else
+            ShowDateTimePickerToolStripMenuItem.Text = "Show DateTimePicker"
+            DateTimePicker.Visible = True
+        End If
+
+    End Sub
+
 
     Private Sub LabelTime_MouseMove(sender As Object, e As MouseEventArgs) Handles LabelTime.MouseMove
         If e.Button = System.Windows.Forms.MouseButtons.Left Then
