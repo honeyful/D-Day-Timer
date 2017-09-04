@@ -75,6 +75,14 @@ Public Class MainForm
         My.Settings.Save()
     End Sub
 
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        TrayIcon.Visible = False
+        TrayIcon.Icon = Nothing
+        TrayIcon.Dispose()
+
+        Environment.Exit(0)
+    End Sub
+
     Private Sub LabelTime_MouseMove(sender As Object, e As MouseEventArgs) Handles LabelTime.MouseMove
         If e.Button = System.Windows.Forms.MouseButtons.Left Then
             newPoint = Control.MousePosition

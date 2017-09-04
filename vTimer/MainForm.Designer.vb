@@ -29,6 +29,10 @@ Partial Class MainForm
         Me.ColorDialog = New System.Windows.Forms.ColorDialog()
         Me.chkStartup = New System.Windows.Forms.CheckBox()
         Me.DateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.TrayIcon = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.ContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ContextMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'LabelTime
@@ -67,6 +71,25 @@ Partial Class MainForm
         Me.DateTimePicker.Size = New System.Drawing.Size(403, 21)
         Me.DateTimePicker.TabIndex = 2
         '
+        'TrayIcon
+        '
+        Me.TrayIcon.ContextMenuStrip = Me.ContextMenu
+        Me.TrayIcon.Icon = CType(resources.GetObject("TrayIcon.Icon"), System.Drawing.Icon)
+        Me.TrayIcon.Text = "vTimer"
+        Me.TrayIcon.Visible = True
+        '
+        'ContextMenu
+        '
+        Me.ContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
+        Me.ContextMenu.Name = "ContextMenu"
+        Me.ContextMenu.Size = New System.Drawing.Size(153, 48)
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ExitToolStripMenuItem.Text = "Exit"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
@@ -82,6 +105,7 @@ Partial Class MainForm
         Me.Name = "MainForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.TransparencyKey = System.Drawing.Color.FromArgb(CType(CType(252, Byte), Integer), CType(CType(252, Byte), Integer), CType(CType(252, Byte), Integer))
+        Me.ContextMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -92,4 +116,7 @@ Partial Class MainForm
     Friend WithEvents ColorDialog As ColorDialog
     Friend WithEvents chkStartup As CheckBox
     Friend WithEvents DateTimePicker As DateTimePicker
+    Friend WithEvents TrayIcon As NotifyIcon
+    Friend WithEvents ContextMenu As ContextMenuStrip
+    Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
 End Class
