@@ -86,10 +86,10 @@ Public Class MainForm
 
     Private Sub ShowDateTimePickerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowDateTimePickerToolStripMenuItem.Click
         If DateTimePicker.Visible = True Then
-            ShowDateTimePickerToolStripMenuItem.Text = "Hide DateTimePicker"
+            ShowDateTimePickerToolStripMenuItem.Text = "Show DateTimePicker"
             DateTimePicker.Visible = False
         Else
-            ShowDateTimePickerToolStripMenuItem.Text = "Show DateTimePicker"
+            ShowDateTimePickerToolStripMenuItem.Text = "Hide DateTimePicker"
             DateTimePicker.Visible = True
         End If
 
